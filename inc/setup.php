@@ -1,23 +1,23 @@
 <?php
 
 function coffin_setup(){
+    add_theme_support( 'title-tag' );
 
+    add_theme_support( 'post-thumbnails' );
+
+    register_nav_menus( array(
+        'top'    => 'Top Menu',
+    ) );
+
+    add_theme_support( 'html5', array(
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+    ) );
 }
 
-add_theme_support( 'title-tag' );
-
-add_theme_support( 'post-thumbnails' );
-
-register_nav_menus( array(
-    'top'    => 'Top Menu',
-) );
-
-add_theme_support( 'html5', array(
-    'comment-form',
-    'comment-list',
-    'gallery',
-    'caption',
-) );
+add_action( 'after_setup_theme', 'coffin_setup' );
 
 function coffin_send_analystic(){
     $current_version = get_option('_jaguar_version');
@@ -33,6 +33,7 @@ function coffin_send_analystic(){
     $response = wp_remote_post($api_url, $send_for_check);
     if ( !is_wp_error($response ) ) update_option( '_jaguar_version' , $theme_data['theme_version'] );
 }
+
 add_action('after_switch_theme','jaguar_send_analystic');
 
 function coffin_get_theme(){
@@ -50,5 +51,5 @@ function coffin_get_theme(){
     $site_url = home_url();
 
     return compact('wp_version', 'theme_name', 'theme_version', 'site_url' );
-    
+
 }
