@@ -1,0 +1,55 @@
+html
+    head
+        block title
+            if request.path.startswith('/category/') and posts.category
+                title= '分类：' + posts.category.title + ' • ' + site.title
+            elif request.path.startswith('/tag/') and posts.tags
+                title= '标签：' + tag + ' • ' + site.title
+            elif request.args.s
+                title= '搜索：' + request.args.s + ' • ' + site.title
+            elif site.configs.sub_title
+                title= site.title + ' • ' + site.configs.sub_title
+            else
+                title= site.title
+
+        +h.headers
+        +h.load('/template/style.scss')
+
+    body
+        header(class='metabar metabar--bordered metabar--top u-clearfix')
+            block header
+                .layoutSingleColumn--wide
+                    .u-floatLeft
+                        a(href='/')
+                            img(src=site.site_avatar, class='logo' , width=38 )
+                    .u-floatRight
+                        +site.just_nav
+
+        div(class='layoutSingleColumn--wide xs-layoutSingleColumn--wide')
+            
+            div(class='blockGroup homeGroup sandraGroup')
+                
+                div(class='sandraList u-clearfix')
+                    for post in posts
+                        article.sandraItem
+                            .sandraItem-inner
+                                bgcover = 'http://coffin.wpista.com/wp-content/themes/Coffin/build/images/default.jpeg'
+                                if ( post.cover )
+                                    bgcover = post.cover
+                                .sandraItem-image: a(style='background-image:url({{bgcover}})')
+                                .sandraItem-meta 
+                                    .source-wrapper
+                                        img(src=site.avatar, class='avatar' , width=26 )
+                                    h2.sandraItem-title: a(href=post.url)= post.title
+                                .sandraItem-info
+                                    time=post.date.format('%m %d, %Y')
+                                    if post.category
+                                        span.middotDivider
+                                        a(href=post.category.url)= post.category.title
+
+                #pager
+                    +h.paginator(style='auto', max_count='8')
+
+        footer.site-footer
+            div.layoutSingleColumn--wide
+                 just a <a href="https://fatesinger.com" target="_blank">bigfa</a> wordpress theme. 

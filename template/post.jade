@@ -1,0 +1,38 @@
+html
+    head
+        +h.headers
+        +h.load('/template/style.scss')
+        title= post.title + " - " + site.title
+    body.single
+        header(class='metabar metabar--bordered metabar--top u-clearfix')
+            block header
+                .layoutSingleColumn--wide
+                    .u-floatLeft
+                        a(href='/')
+                            img(src=site.site_avatar, class='logo' , width=38 )
+                    .u-floatRight
+                        +site.just_nav
+
+        div.layoutSingleColumn
+            article.u-paddingTop50
+                header.entry-header
+                    .entry-meta
+                        time=post.date.format('%m %d, %Y')
+                        if post.category
+                            span.middotDivider
+                            a(href=post.category.url)= post.category.title
+                    h2.entry-title: post.title
+                .grap= post.content
+                if post.tags
+                    .tag-list
+                        for tag in post.tags
+                            a(href='/tag/{{tag}}')= tag
+
+    if post.metadata.comment not in ['no', 'No', False]
+        div.comments-area
+            .layoutSingleColumn
+                +post.comments_as_html()
+
+        footer.site-footer
+            div.layoutSingleColumn--wide
+                 just a <a href="https://fatesinger.com" target="_blank">bigfa</a> wordpress theme. 
