@@ -2,13 +2,13 @@ html
     head
         block title
             if request.path.startswith('/category/') and posts.category
-                title= '分类：' + posts.category.title + ' • ' + site.title
+                title= '分类：' + posts.category.title + ' - ' + site.title
             elif request.path.startswith('/tag/') and posts.tags
-                title= '标签：' + tag + ' • ' + site.title
+                title= '标签：' + tag + ' - ' + site.title
             elif request.args.s
-                title= '搜索：' + request.args.s + ' • ' + site.title
+                title= '搜索：' + request.args.s + ' - ' + site.title
             elif site.configs.sub_title
-                title= site.title + ' • ' + site.configs.sub_title
+                title= site.title + ' - ' + site.configs.sub_title
             else
                 title= site.title
 
