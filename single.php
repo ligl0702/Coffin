@@ -21,7 +21,7 @@
                 </div>
                 <div class="narrot-card-content"><?php the_author();?></div>
                 <div class="narrot-card-description">
-                    <p><?php the_author_description();?></p>
+                    <p><?php the_author_meta('description');?></p>
                 </div>
             </div>
         </article>
