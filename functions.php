@@ -1,5 +1,5 @@
 <?php
-define('COFFIN_VERSION', '1.0.1');
+define('COFFIN_VERSION', '1.0.2');
 define('COFFIN_DEBUG', false);
 
 require('inc/setup.php');
