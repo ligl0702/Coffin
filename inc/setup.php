@@ -20,7 +20,7 @@ function coffin_setup(){
 add_action( 'after_setup_theme', 'coffin_setup' );
 
 function coffin_send_analystic(){
-    $current_version = get_option('_jaguar_version');
+    $current_version = get_option('_coffin_version');
     $api_url = "https://dev.fatesinger.com/_/api/";
     $theme_data = coffin_get_theme();
     if ( $current_version == $theme_data['theme_version'] ) return;
