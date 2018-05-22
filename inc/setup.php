@@ -55,3 +55,12 @@ function coffin_get_theme(){
 }
 
 require('tgm-plugin-activation/plugins.php');
+
+add_filter('comment_form_field_cookies','__return_false');
+
+add_action('set_comment_cookies','coffin_set_cookies',10,3);
+
+function coffin_set_cookies( $comment, $user, $cookies_consent){
+    $cookies_consent = true;
+    wp_set_comment_cookies($comment, $user, $cookies_consent);
+}
