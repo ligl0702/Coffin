@@ -17,12 +17,5 @@ function coffin_enqueue_scripts() {
     $custom_css = "";
     wp_add_inline_style( 'coffin', $custom_css );
 
-    $this_user = wp_get_current_user();
-
-    wp_localize_script('coffin', 'obvInit', array(
-        'api' => get_rest_url(),
-        'nonce' =>wp_create_nonce('wp_rest'),
-    ));
-
 }
 add_action( 'wp_enqueue_scripts', 'coffin_enqueue_scripts' );
