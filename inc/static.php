@@ -9,7 +9,7 @@ function coffin_enqueue_scripts() {
     $timer = @filemtime(TEMPLATEPATH .'/build/css/app.css');
     $jstimer = @filemtime(TEMPLATEPATH .'/build/js/app.js');
     wp_enqueue_style('coffin', get_template_directory_uri() . '/build/css/app.css' , array(), $timer , 'screen');
-    wp_enqueue_script( 'coffin', get_template_directory_uri() . '/build/js/app.js' , array(), $jstimer , true );
+    wp_enqueue_script( 'coffin', get_template_directory_uri() . '/build/js/app.js' , array('jquery'), $jstimer , true );
     wp_localize_script( 'coffin' , 'coffin' , array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
       ) );
